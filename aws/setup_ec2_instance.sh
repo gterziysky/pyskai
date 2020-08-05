@@ -147,6 +147,12 @@ echo conda activate $CONDA_ENV  >> $HOME/startup_script
 
 ## Now on the server, run:
 # jupyter notebook --no-browser --port 1234
-## and note the command output
-## then open the notebook locally:
-# ssh -i ~/.ssh/id_rsa -NL 1234:localhost:1234 ubuntu@ec2_instance_dns
+## and note the command output where it shows the jupyter notebook URL
+## then open the notebook locally (use -f to run the process in the background):
+# ssh -i ~/.ssh/id_rsa -fNL 1234:localhost:1234 ubuntu@ec2_instance_dns
+
+## then again on the server run tensorboard:
+# tensorboard --logdir runs --host localhost
+## forward the port to the local machine
+# ssh -i ~/.ssh/id_rsa -fNL 6006:localhost:6006 ubuntu@ec2_instance_dns
+## and open the localhost:6006 in the browser
