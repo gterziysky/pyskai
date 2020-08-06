@@ -7,6 +7,8 @@ import re
 import time
 import urllib.request
 import base64
+import sys
+import datetime
 
 
 def query_instance(instance_name):
@@ -99,12 +101,15 @@ if __name__ == '__main__':
     #       https://aws.amazon.com/about-aws/whats-new/2017/04/use-the-enhanced-aws-price-list-api-to-access-aws-service-and-region-specific-product-and-pricing-information/
     #       https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html
     reservation = ec2.request_spot_instances(
+        BlockDurationMinutes=180,  # how many minutes will the instance run before being terminated
         DryRun=False,
-        SpotPrice='0.20',
+        SpotPrice='0.20', # 0.20
         Type='one-time',
         InstanceCount=1,
-        # ValidFrom=datetime.datetime(),
-        # ValidUntil=,
+        # specify a small time frame for the request in order to have it fail soon
+        # default request lifetime is 7 days
+        ValidFrom=datetime.datetime.utcnow() + datetime.timedelta(seconds=5),
+        ValidUntil=datetime.datetime.utcnow() + datetime.timedelta(minutes=5),
         # TagSpecifications=[
         #     {'ResourceType': 'instance',
         #      'Tags': [
@@ -120,7 +125,7 @@ if __name__ == '__main__':
             'ImageId': 'ami-079024c517d22af5b',
             'KeyName': 'GalenMBP',
             'SecurityGroups': ['ssh-access-limit'],
-            'InstanceType': 'g4dn.xlarge',
+            'InstanceType': 'g4dn.xlarge',  # 'p2.xlarge'
             'Placement': {
                 'AvailabilityZone': 'eu-central-1a',
             },
@@ -175,6 +180,12 @@ if __name__ == '__main__':
                     res['SpotInstanceRequests'][0]['Status']['Message'],
                     res['SpotInstanceRequests'][0]['CreateTime'].strftime("%Y-%m-%d %H:%M:%S UTC"),
                     res['SpotInstanceRequests'][0]['ValidUntil'].strftime("%Y-%m-%d %H:%M:%S UTC"))
+
+        if res['SpotInstanceRequests'][0]['Status']['Code'] in ['capacity-not-available', 'price-too-low']:
+            # exit if our bid price is lower than the minimum spot price for the instance
+            # see
+            # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#using-spot-instances-managing-interruptions
+            sys.exit(0)
         time.sleep(10)
 
     if 'InstanceId' in res['SpotInstanceRequests'][0].keys():

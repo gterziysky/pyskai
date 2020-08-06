@@ -100,6 +100,9 @@ sudo apt-get install -y ubuntu-drivers-common
 # ubuntu-drivers devices
 # sudo ubuntu-drivers autoinstall
 sudo apt-get install -y nvidia-driver-450
+# !!!NOTE: following NVIDIA driver install, the system should be rebooted
+# TODO: figure a way to install without rebooting
+# https://www.fosslinux.com/41008/install-nvidia-driver-on-ubuntu-command-line-and-gui-ways.htm
 
 # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#verify-you-have-cuda-enabled-system
 # GPU=$(lspci | grep -i -e "VGA" | grep -i -e "NVIDIA" | head -n1)
@@ -144,6 +147,13 @@ chmod a+x startup_script
 echo export PATH="$HOME/$CONDA_DIR_NAME/bin:"$PATH >> $HOME/startup_script
 echo . $HOME/$CONDA_DIR_NAME/bin/activate  >> $HOME/startup_script
 echo conda activate $CONDA_ENV  >> $HOME/startup_script
+
+# Run jupyter and tensorboard in the background for every shell session
+echo conda activate $CONDA_ENV >> $HOME/.bashrc
+echo "tensorboard --logdir runs --host localhost &" >> $HOME/.bashrc
+echo "jupyter notebook --no-browser --port 1234 &" >> $HOME/.bashrc
+
+# Check the UserData script output in /var/log/cloud-log.log
 
 ## Now on the server, run:
 # jupyter notebook --no-browser --port 1234
