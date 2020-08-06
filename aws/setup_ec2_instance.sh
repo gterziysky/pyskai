@@ -151,7 +151,6 @@ echo . $HOME/$CONDA_DIR_NAME/bin/activate  >> $HOME/startup_script
 echo conda activate $CONDA_ENV  >> $HOME/startup_script
 
 # Run jupyter and tensorboard in the background for every shell session
-echo conda activate $CONDA_ENV >> $HOME/.bashrc
 echo "tensorboard --logdir runs --host localhost &" >> $HOME/.bashrc
 echo "jupyter notebook --no-browser --port 1234 &" >> $HOME/.bashrc
 
