@@ -89,7 +89,7 @@ tensorboardx=2.1 matplotlib=3.1.0 pandas=0.24.2
 
 conda install -y -c akode atari-py=0.1.1
 
-pip install opencv-python==3.4.0.12 ptan==0.3
+pip install opencv-python==3.4.0.12 ptan==0.3 gym[atari]
 # ========
 
 # see if there is a CUDA capable GPU
