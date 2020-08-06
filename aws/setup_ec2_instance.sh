@@ -155,6 +155,7 @@ echo "tensorboard --logdir runs --host localhost &" >> $HOME/.bashrc
 echo "jupyter notebook --no-browser --port 1234 &" >> $HOME/.bashrc
 
 ## Restart the EC2 instance so that the Nvidia drivers come into effect
+# echo "Restarting for CUDA to come into effect"
 # sudo shutdown -r now
 
 # Check the UserData script output in /var/log/cloud-log.log
@@ -170,3 +171,6 @@ echo "jupyter notebook --no-browser --port 1234 &" >> $HOME/.bashrc
 ## forward the port to the local machine
 # ssh -i ~/.ssh/id_rsa -fNL 6006:localhost:6006 ubuntu@ec2_instance_dns
 ## and open the localhost:6006 in the browser
+
+## Copy any code to the EC2 instance
+## scp -i ~/.ssh/id_rsa ~/path/to/file/NNet.ipynb ubuntu@EC2_INSTANCE_PUB_DNS:/home/ubuntu/
