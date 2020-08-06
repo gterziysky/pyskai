@@ -93,20 +93,11 @@ pip install opencv-python==3.4.0.12 ptan==0.3
 # ========
 
 # see if there is a CUDA capable GPU
-# https://varhowto.com/install-pytorch-ubuntu-20-04/#Step_2_%E2%80%94_Install_NVIDIA_Linux_driver
-# better - https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-20-04-focal-fossa-linux
-sudo add-apt-repository -y ppa:graphics-drivers/ppa
-sudo apt-get install -y ubuntu-drivers-common
-# ubuntu-drivers devices
-# sudo ubuntu-drivers autoinstall
-sudo apt-get install -y nvidia-driver-450
-# !!!NOTE: following NVIDIA driver install, the system should be rebooted
-# TODO: figure a way to install without rebooting
-# https://www.fosslinux.com/41008/install-nvidia-driver-on-ubuntu-command-line-and-gui-ways.htm
+GPU=$(lspci | grep -i -e "NVIDIA" | head -n1)
 
 # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#verify-you-have-cuda-enabled-system
 # GPU=$(lspci | grep -i -e "VGA" | grep -i -e "NVIDIA" | head -n1)
-GPU=$(lspci | grep -i -e "3D controller" | grep -i -e "NVIDIA" | head -n1)
+# GPU=$(lspci | grep -i -e "3D controller" | grep -i -e "NVIDIA" | head -n1)
 # 3D controller
 # for testing:
 # GPU=$(lspci | grep -i -e "abvg")
@@ -116,7 +107,18 @@ if [ -z "$GPU" ]; then
 	$HOME/$CONDA_DIR_NAME/bin/conda install -c pytorch -y pytorch-cpu torchvision-cpu
 else
         echo "installing PyTorch with CUDA"
-	$HOME/$CONDA_DIR_NAME/bin/conda install  -c pytorch -y pytorch torchvision cudatoolkit=10.2
+        # https://varhowto.com/install-pytorch-ubuntu-20-04/#Step_2_%E2%80%94_Install_NVIDIA_Linux_driver
+        # better - https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-20-04-focal-fossa-linux
+        sudo add-apt-repository -y ppa:graphics-drivers/ppa
+        sudo apt-get install -y ubuntu-drivers-common
+        # ubuntu-drivers devices
+        sudo ubuntu-drivers autoinstall
+        # sudo apt-get install -y nvidia-driver-450
+        # !!!NOTE: following NVIDIA driver install, the system should be rebooted
+        # TODO: figure a way to install without rebooting
+        # https://www.fosslinux.com/41008/install-nvidia-driver-on-ubuntu-command-line-and-gui-ways.htm
+
+	      $HOME/$CONDA_DIR_NAME/bin/conda install  -c pytorch -y pytorch torchvision cudatoolkit=10.2
 fi
 
 # create a folder to hold the code
@@ -152,6 +154,9 @@ echo conda activate $CONDA_ENV  >> $HOME/startup_script
 echo conda activate $CONDA_ENV >> $HOME/.bashrc
 echo "tensorboard --logdir runs --host localhost &" >> $HOME/.bashrc
 echo "jupyter notebook --no-browser --port 1234 &" >> $HOME/.bashrc
+
+## Restart the EC2 instance so that the Nvidia drivers come into effect
+# sudo shutdown -r now
 
 # Check the UserData script output in /var/log/cloud-log.log
 

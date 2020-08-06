@@ -56,6 +56,9 @@ if __name__ == '__main__':
 
     vol_name = 'dev-instance-ebs-%s' % in_suffix  # EBS vol name
     iam_role_name = "EC2_dev_role"  # apply an IAM role to the instance
+    # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html
+    # before using a different zone, make sure the IAM role and security group exist, i.e. for 'us-east-1a'
+    availability_zone = 'eu-central-1a'  # 'eu-central-1a', 'eu-central-1b'
 
     git_token = os.getenv('GIT_OAUTH_TOKEN', None)
     if git_token is None:
@@ -125,9 +128,9 @@ if __name__ == '__main__':
             'ImageId': 'ami-079024c517d22af5b',
             'KeyName': 'GalenMBP',
             'SecurityGroups': ['ssh-access-limit'],
-            'InstanceType': 'g4dn.xlarge',  # 'p2.xlarge'
+            'InstanceType': 'g2.2xlarge',  # 'g4dn.xlarge', 'p2.xlarge'
             'Placement': {
-                'AvailabilityZone': 'eu-central-1a',
+                'AvailabilityZone': availability_zone,
             },
             'IamInstanceProfile': {'Name': iam_role_name},
             'UserData': user_data_script,
@@ -160,6 +163,9 @@ if __name__ == '__main__':
     # instance = reservation['Instances'][0]
     spot_inst_req_id = reservation['SpotInstanceRequests'][0]['SpotInstanceRequestId']
 
+    logger.info("Waiting a bit for the the request to get registered...")
+    time.sleep(2)
+
     res = ec2.describe_spot_instance_requests(
         DryRun=False,
         SpotInstanceRequestIds=[
@@ -181,7 +187,7 @@ if __name__ == '__main__':
                     res['SpotInstanceRequests'][0]['CreateTime'].strftime("%Y-%m-%d %H:%M:%S UTC"),
                     res['SpotInstanceRequests'][0]['ValidUntil'].strftime("%Y-%m-%d %H:%M:%S UTC"))
 
-        if res['SpotInstanceRequests'][0]['Status']['Code'] in ['capacity-not-available', 'price-too-low']:
+        if res['SpotInstanceRequests'][0]['Status']['Code'] in ['capacity-not-available', 'price-too-low', 'constraint-not-fulfillable']:
             # exit if our bid price is lower than the minimum spot price for the instance
             # see
             # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#using-spot-instances-managing-interruptions
