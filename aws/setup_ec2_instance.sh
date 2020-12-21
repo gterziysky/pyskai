@@ -18,8 +18,8 @@ else
 fi
 
 CONDA_ENV="rlenv"
-REPO_NAME="pyskai"
-GIT_OAUTH_TOKEN="GIT_PERSONAL_ACCESS_TOKEN_PLACEHOLDER"
+REPO_NAME="gterziysky/pyskai"
+# GIT_OAUTH_TOKEN="GIT_PERSONAL_ACCESS_TOKEN_PLACEHOLDER"
 PUBLIC_IP_ADDRESS="PUBLIC_IP_ADDRESS_OF_COMPUTER_USED_TO_EXECUTE_THE_SCRIPT"
 
 # temp fix of a bug in Anaconda which has been described here:
@@ -129,9 +129,9 @@ cd $HOME/repos || exit
 if [ -n "$GIT_OAUTH_TOKEN" ]; then
 	echo "cloning code repositories..."
 	# clone the necessary code
-	git clone https://$GIT_OAUTH_TOKEN:x-oauth-basic@github.com/gterziysky/$REPO_NAME.git
+	git clone https://$GIT_OAUTH_TOKEN:x-oauth-basic@github.com/$REPO_NAME.git
 else
-	echo "$GIT_OAUTH_TOKEN is empty."
+	echo "GIT_OAUTH_TOKEN is empty."
 	echo "To set up a personal access token,"
 	echo "please follow the guide at: https://help.github.com/en/articles/git-automation-with-oauth-tokens"	
 fi
