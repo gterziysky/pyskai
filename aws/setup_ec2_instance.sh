@@ -40,7 +40,7 @@ rm $CONDA_INSTALL_SCRIPT
 # https://docs.anaconda.com/anaconda/install/silent-mode/#linux-macos
 # in each new bash session, before using conda, set the PATH and run
 export PATH="$HOME/$CONDA_DIR_NAME/bin:$PATH"
-source $HOME/$CONDA_DIR_NAME/bin/activate 
+source $HOME/$CONDA_DIR_NAME/bin/activate
 
 # init conda for BASH for future use (this modifies ~/.bashrc)
 echo export PATH="$HOME/$CONDA_DIR_NAME/bin:"\'$PATH\' >> $HOME/.bashrc
@@ -122,8 +122,8 @@ else
 fi
 
 # create a folder to hold the code
-mkdir $HOME/repos
-cd $HOME/repos || exit
+mkdir $HOME/Developer
+cd $HOME/Developer || exit
 
 # download the code repositories
 if [ -n "$GIT_OAUTH_TOKEN" ]; then
