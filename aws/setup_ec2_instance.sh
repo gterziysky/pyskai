@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# if needed install GCC on Ubuntu 20.04 LTS:
+# https://itsubuntu.com/install-gnu-compiler-collection-gcc-on-ubuntu-20-04-lts/
+
 # make sure we perform this script for a non-sudo user
 # the script currently requires about 10.5 mins to complete (on a GPU EC2 instance)
 
