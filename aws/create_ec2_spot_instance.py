@@ -128,7 +128,7 @@ if __name__ == '__main__':
             'ImageId': 'ami-079024c517d22af5b',
             'KeyName': 'GalenMBP',
             'SecurityGroups': ['ssh-access-limit'],
-            'InstanceType': 'g2.2xlarge',  # 'g4dn.xlarge', 'p2.xlarge'
+            'InstanceType': 'g4dn.xlarge',  # 'g2.2xlarge',  # 'g4dn.xlarge', 'p2.xlarge'
             'Placement': {
                 'AvailabilityZone': availability_zone,
             },
