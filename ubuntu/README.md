@@ -74,5 +74,14 @@ Enter the TeamViewer ID of the computer which will be used to wake up the remote
 Make sure incoming connections is set to accept.
 
 
-Next, follow [installing in silent mode](https://docs.anaconda.com/anaconda/install/silent-mode/).
+Next, follow [installing conda in silent mode](https://docs.anaconda.com/anaconda/install/silent-mode/).
 
+Install pytorch:
+```bash
+conda create --name mlenv --yes python=3.10 pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia
+```
+
+Install additional packages:
+```bash
+conda install --channel conda-forge --yes pandas notebook scikit-learn
+```
