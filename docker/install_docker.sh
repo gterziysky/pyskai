@@ -61,3 +61,15 @@ sudo dpkg -i docker-ce_20.10.11_3-0_ubuntu-focal_amd64.deb
 # run docker
 # sudo docker run ubuntu
 # sudo docker run -t -i --rm ubuntu bash
+
+# 4. Manage Docker as non-root user (for more info see: https://docs.docker.com/engine/install/linux-postinstall/)
+# Create a docker group
+sudo groupadd docker # if this group exists, the command will give a warning
+# add the current user to the group
+sudo usermod -aG docker $USER
+# Log out and log back in so that your group membership is re-evaluated.
+
+# Verify
+groups
+
+
