@@ -103,3 +103,20 @@ ssh remote_user@localhost -p 43022
 ```
 
 Copy/paste ssh public keys across the machines to allow for easy access.
+
+To open a jupyter notebook server on the remote machine, do:
+
+```bash
+# choose a specific port, default is 8888
+# look for the session token in the output of this command
+jupyter notebook --no-browser --port 1234
+```
+
+Then on the local machine using the reverse ssh, do:
+
+```bash
+# forward localhost port 8888 to the remote machine's port 8888
+ssh -i ~/.ssh/id_rsa -NL 8888:localhost:8888 remote_user@localhost -p 43022
+```
+
+Then open a browser and connect to http://localhost:8888 and type in the token from the remote machine's jupyter server.
