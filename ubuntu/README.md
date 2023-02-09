@@ -85,3 +85,7 @@ Install additional packages:
 ```bash
 conda install --channel conda-forge --yes pandas notebook scikit-learn
 ```
+
+### Reverse ssh
+
+[Guide on reverse SSH](0~https://www.howtogeek.com/428413/what-is-reverse-ssh-tunneling-and-how-to-use-it/)
