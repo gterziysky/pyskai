@@ -89,3 +89,17 @@ conda install --channel conda-forge --yes pandas notebook scikit-learn
 ### Reverse ssh
 
 [Guide on reverse SSH](https://www.howtogeek.com/428413/what-is-reverse-ssh-tunneling-and-how-to-use-it/)
+
+Log into the remote machine using TeamViewer and open an ssh tunnel to the local machine:
+
+```bash
+ssh -R 43022:localhost:22 localuser@localmachine
+```
+
+Then on the local machine, open an ssh tunnel to the remote machine:
+
+```bash
+ssh remote_user@localhost -p 43022
+```
+
+Copy/paste ssh public keys across the machines to allow for easy access.
