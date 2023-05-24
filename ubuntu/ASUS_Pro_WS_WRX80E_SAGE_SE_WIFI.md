@@ -43,3 +43,9 @@ Seems like the message was due to a very low rating of the CPU fan which seemed 
 1) The boot time is slow after power off (i.e. not just by turning the PC off, but by cutting power).
 Boot times following a restart are faster.
  
+### Articles
+
+1. [no console output with Linux-6.x (with Asus WRX80E-SAGE mb)](https://superuser.com/questions/1771347/no-console-output-with-linux-6-x-with-asus-wrx80e-sage-mb?newreg=621fdfacc41642d78a43d5ed10162b8f#1771547)
+1. [[Solved] Ubuntu 22.04 on Asus WRX80E Sage not detecting USB and M.2](https://forum.level1techs.com/t/solved-ubuntu-22-04-on-asus-wrx80e-sage-not-detecting-usb-and-m-2/186001/4)
+1. [Asus Pro WRX80E-SAGE-WIFI - Sata drives invisible on Ubuntu](https://forum.level1techs.com/t/asus-pro-wrx80e-sage-wifi-sata-drives-invisible-on-ubuntu/184532/6)
+1. [https://dlsvr04.asus.com.cn/pub/ASUS/server/accessory/ASMB9/E12610_ASMB9-iKVM_UM_WEB.pdf](https://dlsvr04.asus.com.cn/pub/ASUS/server/accessory/ASMB9/E12610_ASMB9-iKVM_UM_WEB.pdf) 
