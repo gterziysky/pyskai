@@ -1,11 +1,19 @@
-Review videos:
-1. [MOTHER of ALL motherboards - ASUS Pro WS WRX80E-SAGE SE WIFI Overview](https://www.youtube.com/watch?v=yWTIVSQLKhY)
-1. [Threadripper Pro: First Look at the ASUS Pro WS WRX80E-SAGE SE WIFI + 32 Core TR Pro 3975WX](https://www.youtube.com/watch?v=G1yiOgtE7D4)
-Start at [2:50](https://youtu.be/G1yiOgtE7D4?t=170) to see the suggestion on
-turning the VGA onboard controller off.
+---
+editor_options: 
+  markdown: 
+    wrap: 80
+---
+
+Review videos: 1. [MOTHER of ALL motherboards - ASUS Pro WS WRX80E-SAGE SE WIFI
+Overview](https://www.youtube.com/watch?v=yWTIVSQLKhY) 1. [Threadripper Pro:
+First Look at the ASUS Pro WS WRX80E-SAGE SE WIFI + 32 Core TR Pro
+3975WX](https://www.youtube.com/watch?v=G1yiOgtE7D4) Start at
+[2:50](https://youtu.be/G1yiOgtE7D4?t=170) to see the suggestion on turning the
+VGA onboard controller off.
 
 Original comment I wrote under the first video:
-```text
+
+``` text
 Great video and really thorough overview!
 
 While the motherboard may appear to be great on paper, I came across several issues (tested with Ubuntu 18.04 & 22.04):
@@ -22,30 +30,51 @@ Cheers!
 
 ### Solution to points from the comment
 
-1) Turned out to be OS-related. Solved after adding the following
-to GRUB in Ubuntu 20.04 or 22.04:
-    ```bash
+1)  Turned out to be OS-related. Solved after adding the following to GRUB in
+    Ubuntu 20.04 or 22.04:
+
+    ```{bash}
     sudo nano /etc/default/grub
     # add to either GRUB_CMDLINE_LINUX_DEFAULT or GRUB_CMDLINE_LINUX
     # for example:
     GRUB_CMDLINE_LINUX="amd-iommu=on iommu=pt pci=nommconf"
     sudo update-grub
     ```
-   
-    Source: the following answer on SO: [no console output with Linux-6.x (with Asus WRX80E-SAGE mb)](https://superuser.com/questions/1771347/no-console-output-with-linux-6-x-with-asus-wrx80e-sage-mb#1771547).
-    If this needs to be done during boot time, hold `Shift` to start the GRUB menu.
-    Another option would be to simply modify the GRUB file on the installation flash.
-1) Solved by the fix in 1).
-1) The message LED (orange-red) went off after updating BMC Firmware from 1.17.0 to 1.29.0. Guide available
-on the ASUS FAQ for Pro WS WRX80E-SAGE SE WIFI: [[Motherboard] How to update the Pro WS WRX80E-SAGE SE WIFI firmware by Website User Interface](https://www.asus.com/me-en/support/FAQ/1046149/).
-Seems like the message was due to a very low rating of the CPU fan which seemed to be from the time when ASUS
- were testing the motherboard.
-1) The boot time is slow after power off (i.e. not just by turning the PC off, but by cutting power).
-Boot times following a restart are faster.
- 
+
+    Source: the following answer on SO: [no console output with Linux-6.x (with
+    Asus WRX80E-SAGE
+    mb)](https://superuser.com/questions/1771347/no-console-output-with-linux-6-x-with-asus-wrx80e-sage-mb#1771547).
+    If this needs to be done during boot time, hold `Shift` to start the GRUB
+    menu. Another option would be to simply modify the GRUB file on the
+    installation flash.
+
+2)  Solved by the fix in 1).
+
+3)  The message LED (orange-red) went off after updating BMC Firmware from
+    1.17.0 to 1.29.0. Guide available on the ASUS FAQ for Pro WS WRX80E-SAGE SE
+    WIFI: [[Motherboard] How to update the Pro WS WRX80E-SAGE SE WIFI firmware
+    by Website User Interface](https://www.asus.com/me-en/support/FAQ/1046149/).
+    Seems like the message was due to a very low rating of the CPU fan which
+    seemed to be from the time when ASUS were testing the motherboard.
+
+4)  The boot time is slow after power off (i.e. not just by turning the PC off,
+    but by cutting power). Boot times following a restart are faster.
+
 ### Articles
 
-1. [no console output with Linux-6.x (with Asus WRX80E-SAGE mb)](https://superuser.com/questions/1771347/no-console-output-with-linux-6-x-with-asus-wrx80e-sage-mb?newreg=621fdfacc41642d78a43d5ed10162b8f#1771547)
-1. [[Solved] Ubuntu 22.04 on Asus WRX80E Sage not detecting USB and M.2](https://forum.level1techs.com/t/solved-ubuntu-22-04-on-asus-wrx80e-sage-not-detecting-usb-and-m-2/186001/4)
-1. [Asus Pro WRX80E-SAGE-WIFI - Sata drives invisible on Ubuntu](https://forum.level1techs.com/t/asus-pro-wrx80e-sage-wifi-sata-drives-invisible-on-ubuntu/184532/6)
-1. [https://dlsvr04.asus.com.cn/pub/ASUS/server/accessory/ASMB9/E12610_ASMB9-iKVM_UM_WEB.pdf](https://dlsvr04.asus.com.cn/pub/ASUS/server/accessory/ASMB9/E12610_ASMB9-iKVM_UM_WEB.pdf) 
+1.  [no console output with Linux-6.x (with Asus WRX80E-SAGE
+    mb)](https://superuser.com/questions/1771347/no-console-output-with-linux-6-x-with-asus-wrx80e-sage-mb?newreg=621fdfacc41642d78a43d5ed10162b8f#1771547)
+2.  [[Solved] Ubuntu 22.04 on Asus WRX80E Sage not detecting USB and
+    M.2](https://forum.level1techs.com/t/solved-ubuntu-22-04-on-asus-wrx80e-sage-not-detecting-usb-and-m-2/186001/4)
+3.  [Asus Pro WRX80E-SAGE-WIFI - Sata drives invisible on
+    Ubuntu](https://forum.level1techs.com/t/asus-pro-wrx80e-sage-wifi-sata-drives-invisible-on-ubuntu/184532/6)
+4.  <https://dlsvr04.asus.com.cn/pub/ASUS/server/accessory/ASMB9/E12610_ASMB9-iKVM_UM_WEB.pdf>
+
+## **Corsair® PSU Type 4 Cables Pinout**
+
+Original article here: [Corsair® PSU Type 4 Cables
+Pinout](https://pc-mods.com/blogs/psu-pinout-repository/corsair-psu-type-4-cables-pinout).
+
+![diagram 1](img/PSU_Pinout_Voltage_-_Corsair_Type_4_1.webp)
+
+![diagram 2](img/PSU_Pinout_Voltage_-_Corsair_Type_4_2.webp)
