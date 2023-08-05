@@ -166,3 +166,47 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvi
 | Download cuDNN v3 (September 8, 2015), for CUDA 7.0 and later.           |
 | Download cuDNN v2 (March 17,2015), for CUDA 6.5 and later.               |
 | Download cuDNN v1 (cuDNN 6.5 R1)                                         |
+
+# Install nvidia-container-toolkit
+
+Follow instructions [here](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#docker).
+
+Add NVIDIA container toolkit repositories.
+As per [this post](https://github.com/NVIDIA/nvidia-docker/issues/1731#issuecomment-1427588427),
+ubuntu 18.04 packages are used for newer Ubuntu versions.
+```shell
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+      && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+      && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
+            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
+
+```shell
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+# The following additional packages will be installed:
+#   libnvidia-container-tools libnvidia-container1 nvidia-container-toolkit-base
+# The following NEW packages will be installed:
+#   libnvidia-container-tools libnvidia-container1 nvidia-container-toolkit nvidia-container-toolkit-base
+# 0 upgraded, 4 newly installed, 0 to remove and 21 not upgraded.
+```
+
+```shell
+sudo nvidia-ctk runtime configure --runtime=docker
+# INFO[0000] Loading docker config from /etc/docker/daemon.json 
+# INFO[0000] Config file does not exist, creating new one 
+# INFO[0000] Wrote updated config to /etc/docker/daemon.json 
+# INFO[0000] It is recommended that the docker daemon be restarted. 
+```
+
+
+```shell
+sudo systemctl restart docker
+```
+
+Test
+```shell
+sudo docker run --rm --runtime=nvidia --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi
+```
