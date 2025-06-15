@@ -21,6 +21,14 @@ To resize the Default LVM partition postinstall, see the following guide: [How t
 
 See section **A note about ubuntu-drivers command-line method # 3** in [Ubuntu Linux Install Nvidia Driver (Latest Proprietary Driver)](https://www.cyberciti.biz/faq/ubuntu-linux-install-nvidia-driver-latest-proprietary-driver/).
 
+### Install the Nvidia container toolkit
+
+For more information, refer to [docker/install_docker_and_nvidia_container_toolkit.md](https://github.com/gterziysky/pyskai/blob/master/docker/install_docker_and_nvidia_container_toolkit.md).
+
+Additional resources:
+* [NVIDIA : Install Container Toolkit](https://www.server-world.info/en/note?os=Ubuntu_24.04&p=nvidia&f=3)
+* The official docs here - [installing with Apt](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installing-with-apt)
+
 ### How to solve flickering screen during Ubuntu 24.04 LTS Server installation
 
 **TL;DR**
