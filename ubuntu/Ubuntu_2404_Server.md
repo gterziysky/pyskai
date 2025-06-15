@@ -29,6 +29,12 @@ Additional resources:
 * [NVIDIA : Install Container Toolkit](https://www.server-world.info/en/note?os=Ubuntu_24.04&p=nvidia&f=3)
 * The official docs here - [installing with Apt](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installing-with-apt)
 
+If all docker commands hang (`docker ps`, `docker image list`, etc.), containerd (`/etc/containerd/configtoml`) and/or docker (`/etc/docker/daemon.json`) may be improperly configured.
+
+See [Configuring Docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-docker) and run the instructions to update the `/etc/docker/daemon.json` file.
+
+Similarly, check [configuring containerd (for Kubernetes)](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-containerd-for-kubernetes) for containerd.
+
 ### How to solve flickering screen during Ubuntu 24.04 LTS Server installation
 
 **TL;DR**
