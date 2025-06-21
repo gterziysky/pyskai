@@ -13,6 +13,8 @@ sudo apt-get update && sudo apt-get install network-manager
 nmcli d wifi connect my_wifi password <password>
 ```
 
+If the system has no access to internet, see [How to install Network Manager without internet access](https://github.com/gterziysky/pyskai/blob/master/ubuntu/Install_Network_Manager_without_Internet.md).
+
 ### Resize default LVM partition
 To resize the Default LVM partition postinstall, see the following guide: [How to Extend the Default Ubuntu LVM Partition](https://packetpushers.net/blog/ubuntu-extend-your-default-lvm-space/).
 
