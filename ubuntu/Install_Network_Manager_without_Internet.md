@@ -1,4 +1,4 @@
-## Network Manager not available
+## How to install Network Manager without internet access
 
 On a system with internet access:
 
