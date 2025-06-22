@@ -27,6 +27,6 @@ You need to log out and log back in in order for the changes in groups to take e
 The [cleanest way](https://blog.duaneleem.com/uninstall-microk8s-ubuntu-22-04-2-lts/) to remove Microk8s is:
 
 ```bash
-sudo microk8s reset
+sudo microk8s reset # <-- this command can take several minutes
 sudo snap remove microk8s
 ```
