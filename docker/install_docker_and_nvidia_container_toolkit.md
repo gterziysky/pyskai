@@ -61,7 +61,9 @@ Log out and log back in so that your group membership is re-evaluated.
 
 ## Install nvidia-container-toolkit
 
-See [NVIDIA : Install Container Toolkit](https://www.server-world.info/en/note?os=Ubuntu_24.04&p=nvidia&f=3) as well as the official docs here [Installing with Apt](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installing-with-apt).
+After `docker` has been installed, see [NVIDIA : Install Container Toolkit](https://www.server-world.info/en/note?os=Ubuntu_24.04&p=nvidia&f=3) as well as the official docs here [Installing with Apt](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installing-with-apt).
+
+The relevant sections which need to be performed from the official docs are: [install with apt on Ubuntu, Debian](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#with-apt-ubuntu-debian), then [configuring docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-docker) and, finally, [configuring containerd (for Kubernetes)](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-containerd-for-kubernetes).
 
 Make sure to run the following sections:
 - [Configuring docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-docker)
