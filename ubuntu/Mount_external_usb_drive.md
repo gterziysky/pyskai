@@ -31,7 +31,19 @@ Mount the drive:
 sudo mount -t ext4 /dev/sdc1 /media/T7
 ```
 
+Run the following command to unmount the drive
+
+```bash
+sudo umount /dev/sdc1
+```
+
 For more information about the tags see [Mount USB](https://help.ubuntu.com/community/Mount/USB#Using_mount).
+
+## Backup home folder to backup drive
+
+```bash
+rsync -av --ignore-existing --progress ~/ /mnt/backup_drive/home/your_username
+```
 
 ## Copy home folder from backup drive
 
