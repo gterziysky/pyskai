@@ -31,13 +31,39 @@ Mount the drive:
 sudo mount -t ext4 /dev/sdc1 /media/T7
 ```
 
+For more information about the tags see [Mount USB](https://help.ubuntu.com/community/Mount/USB#Using_mount).
+
+### Unmount the drive
+
 Run the following command to unmount the drive
 
 ```bash
+# check if the drive is mounted
+mount | grep sdc
+
+# unmount the partition
 sudo umount /dev/sdc1
+
+# sync any remaining writes
+sudo sync
+
+# power off the usb
+sudo udisksctl power-off -b /dev/sdc
+
+# # If udisksctl isn't installed, install it
+# sudo apt install udisks2
+
+# or instead use eject:
+sudo eject /dev/sdc
 ```
 
-For more information about the tags see [Mount USB](https://help.ubuntu.com/community/Mount/USB#Using_mount).
+Here is a one-liner:
+```bash
+sudo umount /dev/sdc1 && sudo sync && sudo eject /dev/sdc
+```
+
+Now it is safe to physically remove the drive.
+
 
 ## Backup home folder to backup drive
 
