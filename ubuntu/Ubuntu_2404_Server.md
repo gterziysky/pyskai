@@ -23,6 +23,8 @@ To resize the Default LVM partition postinstall, see the following guide: [How t
 
 See section **A note about ubuntu-drivers command-line method # 3** in [Ubuntu Linux Install Nvidia Driver (Latest Proprietary Driver)](https://www.cyberciti.biz/faq/ubuntu-linux-install-nvidia-driver-latest-proprietary-driver/).
 
+Here is the official Ubuntu guide on installing Nvidia drivers: [the recommended way (ubuntu-drivers tool)](https://ubuntu.com/server/docs/how-to/graphics/install-nvidia-drivers/#the-recommended-way-ubuntu-drivers-tool). It is similar to the one described above, but a bit more specific.
+
 ### Install the Nvidia container toolkit
 
 For more information, refer to [docker/install_docker_and_nvidia_container_toolkit.md](https://github.com/gterziysky/pyskai/blob/master/docker/install_docker_and_nvidia_container_toolkit.md).
