@@ -23,7 +23,22 @@ To resize the Default LVM partition postinstall, see the following guide: [How t
 
 See section **A note about ubuntu-drivers command-line method # 3** in [Ubuntu Linux Install Nvidia Driver (Latest Proprietary Driver)](https://www.cyberciti.biz/faq/ubuntu-linux-install-nvidia-driver-latest-proprietary-driver/).
 
+### Example for Ubuntu Server
+
 Here is the official Ubuntu guide on installing Nvidia drivers: [the recommended way (ubuntu-drivers tool)](https://ubuntu.com/server/docs/how-to/graphics/install-nvidia-drivers/#the-recommended-way-ubuntu-drivers-tool). It is similar to the one described above, but a bit more specific.
+
+```bash
+sudo apt-get update && sudo apt-get upgrade
+sudo ubuntu-drivers install --gpgpu
+sudo systemctl reboot
+```
+
+After the reboot, install nvidia utils (i.e. nvidia-smi)
+
+```bash
+DRIVER_VERSION=$(cat /sys/module/nvidia/version | awk -F. '{print $1}')
+sudo apt-get install nvidia-utils-$DRIVER_VERSION-server
+```
 
 ### Install the Nvidia container toolkit
 
